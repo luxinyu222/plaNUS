@@ -1,5 +1,11 @@
 {
   "expo": {
+    "updates": {
+      "enabled": true,
+      "checkAutomatically": "ON_LOAD",
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/1257c818-948d-46d5-ba40-7797047247ad"
+    },
     "name": "plaNUS",
     "slug": "plaNUS",
     "version": "1.0.0",
@@ -31,6 +37,28 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "1257c818-948d-46d5-ba40-7797047247ad"
+      }
+    },
+    "owner": "blacksesamezongzi",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "expo": {
+      "plugins": [
+        [
+          "expo-calendar",
+          {
+            "calendarPermission": "The app needs to access your calendar."
+          }
+        ]
+      ]
     }
   }
 }
