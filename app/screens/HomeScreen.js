@@ -535,7 +535,7 @@ const HomeScreen = () => {
                 onRequestClose={handleCancel}>
                 <View style={styles.modalContainer}>
                 <View style={[styles.modalView,{justifyContent:'flex-end'}]}>
-                    <Text style={styles.modalText}>Add Task</Text>
+                    <Text style={styles.modalText}>{renderAddButton()} Task</Text>
                     <TextInput 
                         style={styles.input}
                         placeholder='Task Name'
