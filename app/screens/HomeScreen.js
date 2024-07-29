@@ -621,7 +621,7 @@ const HomeScreen = () => {
                 transparent={true}
                 visible={nusmodsModalVisible}
                 onRequestClose={handleCloseNusmodsModal}>
-                <View style={{flex:1, justifyContent:'center',alignItems:'center'}}>
+                <View style={[styles.modalContainer,{justifyContent:'center'}]}>
                     <View style={styles.modalView}>
                         <Text style={styles.modalText}>Import from NUSMods</Text>
                         <TextInput
@@ -629,6 +629,10 @@ const HomeScreen = () => {
                             placeholder="Enter NUSMods URL"
                             value={nusmodsUrl}
                             onChangeText={setNusmodsUrl}
+                            // multiline={true}
+                            scrollEnabled={true}
+                            textAlignVertical='top'
+
                         />
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '50%' }}>
                             <TouchableOpacity
