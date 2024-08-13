@@ -5,6 +5,7 @@ import { Input } from '@rneui/themed'
 import { Session } from '@supabase/supabase-js'
 import Button from '../../components/Button';
 import React from 'react'; 
+import Avatar from '../../components/Avatar';
 
 export default function Account({ session }: { session: Session }) {
   const [loading, setLoading] = useState(true)
@@ -82,6 +83,18 @@ export default function Account({ session }: { session: Session }) {
 
   return (
     <View style={styles.container}>
+   
+      <View>
+        <Avatar
+          size={200}
+          url={avatarUrl}
+          onUpload={(url: string) => {
+            setAvatarUrl(url)
+            updateProfile({ username, website, avatar_url: url })
+          }}
+        />
+      </View>
+
       <View style={[styles.verticallySpaced, styles.mt20]}>
         <Input label="Email" value={session?.user?.email} disabled />
       </View>
@@ -120,6 +133,7 @@ export default function Account({ session }: { session: Session }) {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     marginTop: 40,
     padding: 12,
   },

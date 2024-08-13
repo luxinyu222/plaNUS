@@ -1,7 +1,7 @@
 import { StyleSheet, SafeAreaView, Text, Dimensions } from 'react-native';
 import { useState, useEffect } from 'react'
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
-import { Login, Signup, Welcome, HomeScreen, Account } from '../screens'
+import { Login, Signup, Welcome, HomeScreen, Account, Timer, Reading } from '../screens'
 import { supabase } from '../lib/supabase'
 import { Session } from '@supabase/supabase-js'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -63,9 +63,13 @@ const AppNavigator = ({ session }: { session: Session }) => (
 
           if (route.name === 'HomeScreen') {
             iconName = focused ? 'home' : 'home-outline';
+          } else if (route.name === 'Timer') {
+            iconName = focused ? 'timer' : 'timer-outline'; // Set the icon for the Timer screen
+          } else if (route.name === 'Reading') {
+            iconName = focused ? 'book' : 'book-outline';
           } else if (route.name === 'Account') {
             iconName = focused ? 'person-circle' : 'person-circle-outline';
-          }
+          } 
           // Return the Ionicons component with the appropriate icon name, size, and color
           return <Ionicons name={iconName as keyof typeof Ionicons.glyphMap} size={size} color={color} />;
         },
@@ -90,7 +94,28 @@ const AppNavigator = ({ session }: { session: Session }) => (
         )
       }}
     />
+
     <AppStack.Screen
+      name="Timer" // Add the Timer screen
+      component={Timer} // Connect it to your Timer component
+      options={{
+        headerShown: false,
+        tabBarLabel: ({ focused }) => (
+          <CustomLabel focused={focused} label="Pomodoro Timer" />
+        ),
+      }}
+    />
+    <AppStack.Screen
+      name="Reading"
+      component={Reading}
+      options={{
+        headerShown: false,
+        tabBarLabel: ({ focused }) => (
+          <CustomLabel focused={focused} label="Reading" />
+        ),
+      }}
+    />
+        <AppStack.Screen
       name='Account'
       options={{
         headerShown: false,

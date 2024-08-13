@@ -112,6 +112,12 @@ const HomeScreen = () => {
         "null":"#dcf99f",
     }
 
+    const handleTaskCompleted = (task) => {
+        task.isCompleted = true;
+        setTaskModalVisible(false);
+        setSelectedTask(null);
+    };
+
     const taskCategories = [
         { label: 'Lesson', value: 'lesson', color: catColorsDark.lesson },
         { label: 'Study', value: 'study', color: catColorsDark.study },
@@ -157,6 +163,7 @@ const HomeScreen = () => {
                         taskToUpdate.date = selectedDate;
                         taskToUpdate.semLabel = taskToUpdate.semLabel;
                         taskToUpdate.weeks = taskToUpdate.weeks;
+                        taskToUpdate.isCompleted = taskToUpdate.isCompleted;
     
                         // Add the task to the new date
                         if (!updatedTasks[selectedDate]) {
@@ -176,6 +183,7 @@ const HomeScreen = () => {
                         date: selectedDate, 
                         semLabel: '',
                         weeks: [],
+                        isCompleted: false,
                     });
                 }
     
@@ -269,11 +277,13 @@ const HomeScreen = () => {
                     <TouchableOpacity 
                         key={task.key}
                         onPress={()=> handleTaskPress(task)}>
+                        {/* onLongPress={handleLongPress(task)}> */}
                     <Text key={index} style={{
                         backgroundColor: catColorsLight[task.category],
                         textAlign:"center",
                         marginVertical:1,
                         fontSize:11,
+                        textDecorationLine: task.isCompleted ? 'line-through' : 'none',
                     }}>{task.name}</Text>
                     </TouchableOpacity>
                 ))}
@@ -402,6 +412,7 @@ const HomeScreen = () => {
                                 category: 'lesson',
                                 semLabel: sem,
                                 weeks: timetable.weeks,
+                                isCompleted: false,
                             });
                             // console.log(timetable.weeks)
                         }
@@ -691,17 +702,26 @@ const HomeScreen = () => {
                             onChangeText={(text) => setSelectedTask({ ...selectedTask, note: text })}
                         />
 
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '50%' }}>                       
+                        <View style={{ flexDirection: 'row', paddingHorizontal:0, width:Dimensions.get('window').width-80 }}>                       
+                            <TouchableOpacity
+                                style={[styles.button,{backgroundColor: "white",alignSelf:"flex-start", alignItems:"flex-start", flex:2}]}
+                                onPress={()=>{handleTaskCompleted(selectedTask)}}>
+                                <Text style={[styles.buttonText,{color:"#2196F3"}]}>Completed!</Text>
+                            </TouchableOpacity>
+                            
+                            <View style={{flexDirection:'row', justifyContent:"flex-end"}}>
                             <TouchableOpacity
                                 style={styles.button}
                                 onPress={()=>{handleEditTask();handleSaveNote();}}>
                                 <Text style={styles.buttonText}>Edit</Text>
                             </TouchableOpacity>
+                            
                             <TouchableOpacity
                                 style={[styles.button,styles.deleteButton]}
                                 onPress={handleDeleteTask}>
                                 <Text style={styles.buttonText}>Delete</Text>
                             </TouchableOpacity>
+                            </View>
                         </View>
                     </View>
                     

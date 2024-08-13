@@ -9,6 +9,7 @@
     "name": "plaNUS",
     "slug": "plaNUS",
     "version": "1.0.0",
+    "runtimeVersion": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -25,7 +26,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.blacksesamezongzi.plaNUS"
     },
     "web": {
       "bundler": "metro",
@@ -47,9 +49,6 @@
       }
     },
     "owner": "blacksesamezongzi",
-    "runtimeVersion": {
-      "policy": "appVersion"
-    },
     "expo": {
       "plugins": [
         [
